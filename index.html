@@ -4,30 +4,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://cdn.jsdelivr.net/npm/font-proxima-nova@1.0.1/style.min.css" rel="stylesheet">
+
   <title>Tinder in JS</title>
 </head>
 
-<script src="main.js" defer></script>
+<script type="module" src="./main.js" defer></script>
 
 <link rel="stylesheet" href="./style.css" type="text/css" />
 
 
 <body>
 
+  <!-- We use it with js when we create a card -->
+  <template id="card-template">
+    <div class="image" 
+      onmousedown="startDrag(event);"
+      ontouchstart="startDrag(event);"
+      >
+      <img src="" alt="" ondragstart="return false;" />
+    </div>
+    <div class="profile-info">
+      <h3></h3>
+      <p class="description">
+        <span></span>
+        <br>
+        <small></small>
+      </p>
+    </div>
+  </template>
+
 
   <div id="app">
-    <div id="swipe-canvas-front">
-      <div id="image">
+    <span id="camera-circle"></span>
+    <div id="swipe-wrapper">
 
+      <img src="./assets/imgs/jb-logo.png" id="logo"/>
+
+      <div id="swipe-canvas-front" class="card">
+        <div class="image">
+        </div>
+      </div>
+      <div id="swipe-canvas-back" class="card">
+        <div class="image">
+        </div>
       </div>
       <div id="commands">
+        
         <ul>
-          <li>Reject❌</li>
-          <li>SuperLike⭐️</li>
-          <li>Accept✅</li>
+          <li onclick="swipeLeft();">❌</li>
+          <li>⭐️</li>
+          <li onclick="swipeRight();">✅</li>
         </ul>
       </div>
     </div>
+
   </div>
 
 </body>

@@ -1,7 +1,19 @@
+@import "./reset.css";
+
+@import url('https://fonts.cdnfonts.com/css/helvetica-neue-55');
+
 body {
   background: #F4F4F4;
   margin: auto;
   text-align: center;
+  font-family: helvetica neue, sans-serif;
+  letter-spacing: 0.01rem;
+}
+
+
+h1, h2, h3, h4, h5, h6, p {
+  font-family: 'Proxima Nova Cn Lt', sans-serif;
+  text-shadow: 0 1px 1px #0000001f;
 }
 
 #app {
@@ -10,39 +22,139 @@ body {
   background: #F4F4F4;
   outline: 1px solid #04F4F4;
   box-shadow: 3px 10px 30px #000000EE;
-  width: 400px;
+  width: 380px;
   max-width: 100%;
+  height: 100%;
+  max-height: 680px;
   margin: 2rem auto;
+  padding-top: 20px;
+  border-radius: 30px;
+  overflow: hidden;
+  outline: 5px solid #000000EE;
+  background-color: white;
 
+  #camera-circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+    z-index: 10;
+    top: 5px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    outline: 3px solid #EEE;
+  }
 
-  #image {
-    display: flex;
-    max-height: 500px;
-    min-height: 300px;
-    height: calc( 100% - 300px);
-    border:  1px solid red;
-    overflow: hidden;
+  #swipe-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    width: 100%;
+    height: calc( 100% - 40px );
+    position: relative;
+    margin-top: 40px;
+    background: white;
     place-content: center;
-    img {
-      object-fit: cover;
+    
+    #logo {
+      height: 30px;;
+      justify-self: center;
+      margin-top: -35px;
     }
   }
+
+  .card {
+    display: grid;
+    position: absolute;
+    grid-template-areas: "whole-area";
+    width: 100%;
+    height: calc( 100% - 100px );
+    z-index: 1;
+    overflow: hidden;
+
+    &#swipe-canvas-front {
+      z-index: 2;
+    }
+
+    .image {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      /* border: 10px solid red; */
+      overflow: hidden;
+      place-content: center;
+      grid-area: whole-area;
+      background: #FEFEFE;
+      cursor: grabbing;
+
+      img {
+        object-fit: cover;
+        width: 100%;
+      }
+    }
+
+    .profile-info {
+      grid-area: whole-area;
+      color: white;
+      align-self: end;
+      margin-bottom: 0;
+      border-bottom: 4px solid white;
+      width: 100%;
+      text-align: left;
+      
+      background: linear-gradient(to top, 
+      rgba(0, 0, 0, 0.5) 0%, 
+      rgba(0, 0, 0, 0.2) 90%,
+      rgba(0, 0, 0, 0) 100%);
+
+      h3 {
+        font-size: 2rem; 
+        margin: 1rem 2rem;
+      }
+      .description {
+        margin: 1rem 2rem;
+      }
+    }
+
+    
+  }
+
+
 
   #commands {
     position: absolute;
     bottom: 0;
     width: 100%;
+    height: 100px;
     background-color: #FFFFFF44;
+    z-index: 10;
 
     ul {
       list-style: none;
       margin: 0;
       padding: 0;
-      margin: 1rem;
+      margin: 0rem;
 
       display: flex;
       flex-direction: row;
       justify-content: space-around;
+
+      li {
+        zoom: 3;
+        background-color: #EEE;
+        border: 1px solid red;
+        padding: 5px;
+        border-radius: 50%;
+        box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.2);
+
+        &:hover {
+          border-color:rgba(192, 135, 22, 0.825);
+          background-color: #878cac7e;
+          box-shadow: none;
+          cursor: pointer;
+        }
+      }
     }
   }
 }
